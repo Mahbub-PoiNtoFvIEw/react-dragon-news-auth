@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const NewsCard = ({ aNews }) => {
-    const {title, thumbnail_url, details, _id} = aNews;
+    const {title,image_url, details, _id} = aNews;
   return (
     <div className="card bg-base-100 shadow-xl mb-6">
       <figure className="px-10 pt-10">
         <img
-          src={thumbnail_url}
+          src={image_url}
           alt="Shoes"
           className="rounded-xl"
         />

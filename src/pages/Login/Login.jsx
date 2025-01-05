@@ -1,12 +1,15 @@
 import React, { useContext, useState } from "react";
 import NavBar from "../shared/NavBar/NavBar";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const {loginUser} = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+    console.log('see location form login page',location)
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -15,12 +18,13 @@ const Login = () => {
         const password = form.get('password');
 
         loginUser(email, password)
-        .then(result =>{
+          .then(result =>{
             console.log(result.user);
-        })
-        .catch(error =>{
+            navigate(location?.state ? location.state : '/');
+          })
+          .catch(error =>{
             console.error(error.message);
-        })
+          })
     };
 
     const handleShowPassword = () =>{
